@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  db:
+  image: mysql:5.7 # 👈 mysql 5.7 버전 사용
+  volumes:
+    - db_data:/var/lib/mysql # 👈 db_data는 맨 아래 volumes에서 가져옴
+  environment: # 👈 환경변수 설정
+    MYSQL_ROOT_PASSWORD: somewordpress
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: wordpress
+    MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    image: wordpress:latest # 👈 wordpress 최신버전
+    ports:
+      - '60000:80' # 👈 60000번 port를 컨테이너내부 80번 port와 포트포워딩
+    restart: always
+    environment: # 👈 환경변수 설정
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+volumes:
+  db_data: {}
+
