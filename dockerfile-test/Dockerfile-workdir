@@ -1,0 +1,6 @@
+FROM httpd:alpine
+WORKDIR /usr/local/apache2/htdocs
+CMD /bin/cat index.html
+# docker build --tag mywork -f Dockerfile-workdir .
+# docker run -d --name mytest mywork
+# docker log mytest
