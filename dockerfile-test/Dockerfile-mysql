@@ -1,0 +1,7 @@
+FROM mysql:5.7
+ENV MYSQL_ROOT_PASSWORD=12345678
+ENV MYSQL_DATABASE=jewonsql
+# docker build --tag mysqldb -f Dockerfile-mysql .
+# docker run -d --name mydb mysqldb
+# docker exec -it mydb /bin/bash
+# mysql -u root -p
