@@ -1,0 +1,21 @@
+# 이미지 지정
+FROM ubuntu:18.04
+#
+# LABEL 표기
+LABEL maintainer="jewon119@gmail.com"
+#
+# ubuntu 컨테이너 후 RUN 명령어 업데이트 및 apache2 설치(y옵션을 통해 yes)
+RUN apt-get update
+RUN apt-get install -y apache2 apt-utils
+#
+# EXPOSE로 80번 포트 노
+EXPOSE 80
+#
+# COPY 명령
+COPY ./2022_DEV /var/www/html/
+#
+# ENTRYPOINT
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+#
+# docker build --tag myweb -f Dockerfile-apache .
+# docker run -P -d --name httpdweb --rm myweb(랜덤포트로 80포트 연결)
