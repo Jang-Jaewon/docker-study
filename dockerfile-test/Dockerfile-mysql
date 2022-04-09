@@ -1,7 +1,24 @@
 FROM mysql:5.7
 ENV MYSQL_ROOT_PASSWORD=12345678
 ENV MYSQL_DATABASE=jewonsql
+
+
+# mysql 이미지 생성
 # docker build --tag mysqldb -f Dockerfile-mysql .
+
+# mysql 컨테이너 실행
+# docker run --rm -d --name mydb -v /home/ubuntu/mysqldata:/var/lib/mysql mysqldb
+
+# jupyter 노트북 빌드 및 컨테이너 실행
+# docker run --rm -d -p 8888:8888 -v /home/ubuntu/2022_LEARN:/home/jewon/work --link mydb:myjupyterdb jupyter/datascience-notebook
+
+# 쥬피터노트북 접속
+# http://고정ip:포트
+
+# 쥬피터노트북 토큰 확인
+# docker logs 쥬피터노트북 컨테이너ID
+
+# mysql 내부 접속
 # docker run -d --name mydb mysqldb
 # docker exec -it mydb /bin/bash
 # mysql -u root -p
