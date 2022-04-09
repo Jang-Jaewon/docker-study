@@ -1,0 +1,16 @@
+FROM ubuntu:18.04
+LABEL maintainer="jewon119@gmail.com"
+
+RUN apt-get update
+RUN apt-get install -y apache2
+
+COPY ./2022_DEV /var/www/html
+
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+# Docker run -d -p --name mywebserver --rm myweb으로 Docker 실행 후,
+# 아래 명령어를 입력하면, 컨테이너 내부의 파일을 Host PC로 가져올 수 있음.
+# docker cp mywebserver:/etc/apache2/sites-available/000-default.conf ./
+# 반대로 Host PC에 있는 파일을 컨테이너 내부로 넣으려면 아래처럼 명령
+# docker cp 000-default.conf mywebserver:/etc/apache2/sites-available/000-default.conf
+# 즉, cp 명령어는 파일을 도커 내부와 Host PC 간에 복사하여 이동시킬 때 활용
