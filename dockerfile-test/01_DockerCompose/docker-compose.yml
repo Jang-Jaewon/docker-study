@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_DATABASE=jewondb
+    ports:
+      - "3306:3306"
+
+# docker-compose build & start
+# docker-compose up -d
